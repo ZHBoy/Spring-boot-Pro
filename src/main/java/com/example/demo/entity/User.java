@@ -23,5 +23,8 @@ public class User {
     private String name;
     private String age;
     private String email;
+    private String collage;
+    private String profession;
+    private String class_info;
 
 }

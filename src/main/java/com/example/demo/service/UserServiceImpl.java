@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.UserRepository;
-import com.example.demo.dto.UserDto;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.User;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -32,9 +32,9 @@ public class UserServiceImpl implements UserService {
      *
      * @return 所有用户数据
      */
-    public List<UserDto> findAllUsers() {
+    public List<UserDTO> findAllUsers() {
         List<User> userList = userRepository.findAll();
-        return modelMapper.map(userList, new TypeToken<List<UserDto>>() {
+        return modelMapper.map(userList, new TypeToken<List<UserDTO>>() {
         }.getType());
     }
 
@@ -44,18 +44,18 @@ public class UserServiceImpl implements UserService {
      * @param userDto
      */
     @Override
-    public UserDto saveUser(UserDto userDto) {
+    public UserDTO saveUser(UserDTO userDto) {
         User user = modelMapper.map(userDto, User.class);
-        return modelMapper.map(userRepository.save(user), UserDto.class);
+        return modelMapper.map(userRepository.save(user), UserDTO.class);
     }
 
     @Override
-    public UserDto findUserById(Long id) {
-        return modelMapper.map(userRepository.findById(id), UserDto.class);
+    public UserDTO findUserById(Long id) {
+        return modelMapper.map(userRepository.findById(id), UserDTO.class);
     }
 
     @Override
-    public UserDto updateUser(UserDto user) {
+    public UserDTO updateUser(UserDTO user) {
 
         // 假设UserDetails是一个包含新信息的DTO或仅仅是一个包含要更新字段的Map
         User userOrigin = userRepository.findById(user.getId())
@@ -67,11 +67,11 @@ public class UserServiceImpl implements UserService {
         userOrigin.setAge(user.getAge());
 
         User currentUser = userRepository.save(userOrigin);
-        return modelMapper.map(currentUser, UserDto.class);
+        return modelMapper.map(currentUser, UserDTO.class);
     }
 
     @Override
-    public Page<UserDto> findAllUsers(int page, int size) {
+    public Page<UserDTO> findAllUsers(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "age")); // page从0开始，size是每页的数量
         Page<User> page1 = userRepository.findAll(pageable);
 
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
         System.out.println("当前页码: "+page1.getNumber());
         System.out.println("当前页条目数量: "+page1.getSize());
 
-        return modelMapper.map(page1, new TypeToken<Page<UserDto>>() {
+        return modelMapper.map(page1, new TypeToken<Page<UserDTO>>() {
         }.getType());
     }
 
