@@ -19,12 +19,14 @@ public class User {
     @Column(name = "id")
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  
+    private Long id;
+    private String user_id;
     private String name;
     private String age;
     private String email;
     private String collage;
     private String profession;
+    private String academic_title;
     private String class_info;
 
 }
