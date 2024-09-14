@@ -20,13 +20,14 @@ public class User {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String user_id;
+    @Lob
+    @Column(name = "user_id", nullable = false)
+    private String userId;
     private String name;
     private String age;
     private String email;
     private String collage;
     private String profession;
-    private String academic_title;
     private String class_info;
 
 }
