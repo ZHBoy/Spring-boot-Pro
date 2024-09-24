@@ -3,6 +3,9 @@ package com.example.demo.service;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.User;
+import com.example.demo.mapper.UserMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    private final UserMapper userMapper;
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.userMapper = userMapper;
     }
 
     /**
@@ -84,6 +90,28 @@ public class UserServiceImpl implements UserService {
 
         return modelMapper.map(page1, new TypeToken<Page<UserDTO>>() {
         }.getType());
+    }
+
+
+    @Override
+    public List<UserDTO> findAllUsersByMybatis() {
+        List<User> userList = userMapper.findAll();
+        return modelMapper.map(userList, new TypeToken<List<UserDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public PageInfo<UserDTO> findAllUsersByMybatis(int pageNum, int pageSize) {
+
+        // 使用PageHelper进行分页
+        PageHelper.startPage(pageNum, pageSize);
+        // 调用Mapper中的查询方法
+        List<User> userList = userMapper.findAll();
+
+        List<UserDTO> dtoList = modelMapper.map(userList, new TypeToken<List<UserDTO>>() {
+        }.getType());
+        // 使用PageInfo包装查询结果，方便获取分页信息
+        return new PageInfo<>(dtoList);
     }
 
     // 这里可以添加更多的业务方法

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.UserDTO;
+import com.github.pagehelper.PageInfo;
 import org.springframework.data.domain.Page;
 
 import java.util.List;  
@@ -17,5 +18,8 @@ public interface UserService {
 
     UserDTO updateUser(UserDTO user);
 
+    List<UserDTO> findAllUsersByMybatis();
+
+    PageInfo<UserDTO> findAllUsersByMybatis(int pageNum, int pageSize);
 
 }

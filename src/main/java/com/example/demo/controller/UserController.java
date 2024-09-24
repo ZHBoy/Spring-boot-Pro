@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.UserDTO;
 import com.example.demo.service.UserService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,17 @@ public class UserController {
     @GetMapping("/getAllUsersOfPages")
     public Page<UserDTO> getAllUsers(int page, int size) {
         return userService.findAllUsers(page, size);
+    }
+
+
+    @GetMapping("/findAllUsersByMybatis")
+    public List<UserDTO> findAllUsersByMybatis() {
+        return userService.findAllUsersByMybatis();
+    }
+
+    @GetMapping("/findAllUsersByMybatisOfPages")
+    public PageInfo<UserDTO> findAllUsersByMybatisOfPages(int page, int size) {
+        return userService.findAllUsersByMybatis(page, size);
     }
 
     @PostMapping("/saveUser")
