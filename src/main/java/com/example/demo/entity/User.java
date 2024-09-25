@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,11 +16,13 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@TableName("users")
 public class User {
     @Id
     @Column(name = "id")
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId
     private Long id;
     @Lob
     @Column(name = "user_id", nullable = false)
