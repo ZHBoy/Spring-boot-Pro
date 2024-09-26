@@ -114,5 +114,12 @@ public class UserServiceImpl implements UserService {
         return new PageInfo<>(dtoList);
     }
 
+    @Override
+    public List<UserDTO> findUserByTeacher2(String teacher) {
+        List<User> userList = userMapper.findUserByTeacher2(teacher);
+        return modelMapper.map(userList, new TypeToken<List<UserDTO>>() {
+        }.getType());
+    }
+
     // 这里可以添加更多的业务方法
 }

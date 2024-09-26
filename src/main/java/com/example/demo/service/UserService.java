@@ -22,4 +22,11 @@ public interface UserService {
 
     PageInfo<UserDTO> findAllUsersByMybatis(int pageNum, int pageSize);
 
+    /**
+     * 查指定班主任的学生
+     * @param teacher 班主任名称
+     * @return 学生列表
+     */
+    List<UserDTO> findUserByTeacher2(String teacher);
+
 }

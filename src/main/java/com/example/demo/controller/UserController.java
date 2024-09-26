@@ -32,6 +32,11 @@ public class UserController {
     }
 
 
+    @GetMapping("/findUserByTeacher2")
+    public List<UserDTO> findUsersByTeacher(String teacher) {
+        return userService.findUserByTeacher2(teacher);
+    }
+
     @GetMapping("/findAllUsersByMybatis")
     public List<UserDTO> findAllUsersByMybatis() {
         return userService.findAllUsersByMybatis();

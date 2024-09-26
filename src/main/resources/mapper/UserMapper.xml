@@ -9,4 +9,19 @@
         FROM users
     </select>
 
+    <select id="findUserByTeacher" resultType="com.example.demo.entity.User">
+        SELECT users.*
+        FROM users
+                 JOIN classes ON users.class_info = classes.class_name
+        WHERE classes.head_teacher = '玲珑';
+    </select>
+
+    <select id="findUserByTeacher2" resultType="com.example.demo.entity.User">
+        SELECT users.*
+        FROM users
+                 JOIN classes ON users.class_info = classes.class_name
+        WHERE classes.head_teacher = #{head_teacher};
+    </select>
+
+
 </mapper>
