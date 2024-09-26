@@ -16,13 +16,11 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@TableName("users")
 public class User {
     @Id
     @Column(name = "id")
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @TableId
     private Long id;
     @Lob
     @Column(name = "user_id", nullable = false)
