@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.EducatorDTO;
-import com.example.demo.dto.UserDTO;
-import com.example.demo.service.UserService;
 import com.example.demo.service.educator.EducatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
